@@ -4,7 +4,7 @@ This repo is for scraping fan fictions from archiveofourown.org
 ## How to use
 - go to archiveofourown.org and make any search query you want
 - paste the link for page one into page.txt
-- run main.py. Downloaded pdfs will appear `./downloads`
+- run main.py. Downloaded pdfs will appear in `./downloads`
 
 ## Rate limits
 archiveofourown.org *will* rate limit you. This will cause the script to pause for an amountof time every once in a while. Usually after being rate limited once, you will then be limited to about 100 requests per 5 minutes thereafter
