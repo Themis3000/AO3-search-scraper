@@ -46,7 +46,7 @@ def login() -> None:
         "commit":  "Log+in"
     }
     response = http.post("https://archiveofourown.org/users/login", data=payload, headers=headers)
-    if response.status_code != 302:
+    if response.status_code != 200:
         print("Login failed: Login request was unsuccessful. Are you sure you provided the correct username and password? Skipping login process...")
         return
     print("Login success!")

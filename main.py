@@ -35,7 +35,7 @@ def work_dl(work: Work, dir_path="./downloads") -> None:
     """Downloads a work"""
     filename = get_valid_filename(f"{work.title} - {work.author} ({work.id})")
     filepath = f"{dir_path}/{filename}.pdf"
-    if os.path.isfile(filename):
+    if os.path.isfile(filepath):
         print(f"skipping {work.title} by {work.author} - already downloaded")
         return
     response = http.get(work.dl_link)
