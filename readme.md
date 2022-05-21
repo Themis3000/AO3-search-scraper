@@ -14,6 +14,10 @@ This repo is for scraping fan fictions from archiveofourown.org
 ## Optional: download locked works too!
 When scraping normally without being logged in to an account, locked works cannot be downloaded. This can however be bypassed if you provide login credentials. I personally cannot guarantee that your account *won't* be banned for scripting, but I also think it's probably unlikely that it would happen. If you're worried about it and your account is very important to you, I recommend making a second account to use this script with instead.
 
+When ao3 support was asked if running this script with a logged in account was safe this is how they responded:
+
+"Thanks for asking about this coding function. We are extremely hesitant to "pre-approve" any potential code, as we would not have any control over it. As long as you follow the rules in the Terms of Service about not interfering with the Archive function, not providing access to people who do not have an account, and not collecting private data on other users, you are potentially safe."
+
 To provide the login credentials to your account open `credentials.txt` and write your username/email on the first line and your password on the second so the file looks like this:
 ```text
 user@example.com
