@@ -1,7 +1,7 @@
 import concurrent.futures
 import os.path
 from utils import Page, Work, get_soup, get_valid_filename, http, login
-from config import BASE_URL
+from config import BASE_URL, DOWNLOAD_FORMAT
 
 
 with open("page.txt", "r") as f:
@@ -35,13 +35,13 @@ def analyze_page_url(url: str) -> Page:
 def work_dl(work: Work, dir_path="./downloads") -> None:
     """Downloads a work"""
     filename = get_valid_filename(f"{work.title} - {work.author} ({work.id})")
-    filepath = f"{dir_path}/{filename}.pdf"
+    filepath = f"{dir_path}/{filename}.{DOWNLOAD_FORMAT}"
     if os.path.isfile(filepath):
         print(f"skipping {work.title} by {work.author} - already downloaded")
         return
     response = http.get(work.dl_link)
     if response.status_code != 200:
-        print(f"failed to fetch {filename}.pdf")
+        print(f"failed to fetch {filename}.{DOWNLOAD_FORMAT}")
     open(filepath, "wb").write(response.content)
 
 

@@ -5,7 +5,7 @@ from typing import List, Tuple, Union
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-from config import DOWNLOAD_BASE_URL, LOGIN_URL
+from config import DOWNLOAD_BASE_URL, LOGIN_URL, DOWNLOAD_FORMAT
 
 retry_strategy = Retry(
     total=10,
@@ -72,7 +72,7 @@ class Work:
 
     def __post_init__(self):
         self.id = re.findall("^[^\d]*(\d+)", self.link)[0]
-        self.dl_link = f"{DOWNLOAD_BASE_URL}/{self.id}/work.pdf"
+        self.dl_link = f"{DOWNLOAD_BASE_URL}/{self.id}/work.{DOWNLOAD_FORMAT}"
 
 
 @dataclass
