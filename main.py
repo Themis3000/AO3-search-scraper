@@ -1,6 +1,7 @@
 import concurrent.futures
 import os.path
 from utils import Page, Work, get_soup, get_valid_filename, http, login
+from config import BASE_URL
 
 
 with open("page.txt", "r") as f:
@@ -27,7 +28,7 @@ def analyze_page_url(url: str) -> Page:
     if len(next_button_search) == 0:
         return Page(works)
     next_button = next_button_search[0]
-    next_url = "https://archiveofourown.org" + next_button.get("href")
+    next_url = BASE_URL + next_button.get("href")
     return Page(works, next_url)
 
 

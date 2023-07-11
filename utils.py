@@ -5,6 +5,7 @@ from typing import List, Tuple, Union
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
+from config import DOWNLOAD_BASE_URL, LOGIN_URL
 
 retry_strategy = Retry(
     total=10,
@@ -32,7 +33,7 @@ def login() -> None:
     if username == "":
         print("Login failed: No credentials provided. Skipping login process...")
         return
-    login_status, login_soup = get_soup("https://archiveofourown.org/users/login")
+    login_status, login_soup = get_soup(LOGIN_URL)
     if login_status != 200:
         print(f"Login failed: Could not fetch login page. Received status code {login_status}. Skipping login process...")
         return
@@ -45,7 +46,7 @@ def login() -> None:
         "user[remember_me]": "0",
         "commit":  "Log+in"
     }
-    response = http.post("https://archiveofourown.org/users/login", data=payload, headers=headers)
+    response = http.post(LOGIN_URL, data=payload, headers=headers)
     if response.status_code != 200:
         print("Login failed: Login request was unsuccessful. Are you sure you provided the correct username and password? Skipping login process...")
         return
@@ -71,7 +72,7 @@ class Work:
 
     def __post_init__(self):
         self.id = re.findall("^[^\d]*(\d+)", self.link)[0]
-        self.dl_link = f"https://archiveofourown.org/downloads/{self.id}/work.pdf"
+        self.dl_link = f"{DOWNLOAD_BASE_URL}/{self.id}/work.pdf"
 
 
 @dataclass
